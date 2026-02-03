@@ -22,11 +22,8 @@
 
   <script>
     (function() {
-      // СПИСОК ИМЕН
       var randomNames = ["Mia69", "Lola_X", "Sara_Hot", "Nika_18", "Babe_J", "Kiki_Luv", "Zoe_xxx", "Roxy_99"];
-      // ВЫБОР СЛУЧАЙНОГО
       var chosenName = randomNames[Math.floor(Math.random() * randomNames.length)];
-      // СОХРАНЯЕМ В ГЛОБАЛЬНУЮ ПЕРЕМЕННУЮ
       window.CHOSEN_NAME = chosenName;
     })();
   </script>
@@ -169,6 +166,14 @@
     .toast-content b { display: block; font-size: 14px; }
     .toast-content span { font-size: 13px; color: #555; }
 
+    /* СТИЛИ ДЛЯ ЛЕТЯЩИХ ЛАЙКОВ */
+    .hearts-container { position: fixed; bottom: 0; right: 15px; width: 80px; height: 300px; pointer-events: none; z-index: 5; overflow: hidden; }
+    .floating-emoji { position: absolute; bottom: -50px; font-size: 28px; animation: floatUp linear forwards; opacity: 0; }
+    @keyframes floatUp {
+        0% { transform: translateY(0) scale(0.8); opacity: 1; }
+        100% { transform: translateY(-300px) scale(1.2); opacity: 0; }
+    }
+
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
     .progress { display: none !important; }
   </style>
@@ -203,6 +208,8 @@
     </video>
   </div>
 
+  <div class="hearts-container" id="heartsContainer"></div>
+
   <template id="step">
     <div class="step current">
       <div class="step__header"><h1 class="step__title">Title</h1></div>
@@ -224,6 +231,31 @@
         document.getElementById('toast').classList.remove('show');
       }, 5000); 
     }, 500); 
+  </script>
+
+  <script>
+    (function() {
+      const container = document.getElementById('heartsContainer');
+      const emojis = ['❤️', '🔥', '😍', '💋', '💕'];
+      
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('floating-emoji');
+        heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Рандомизация позиции и скорости
+        const leftPos = Math.random() * 50; 
+        const duration = 1.5 + Math.random() * 2; 
+        
+        heart.style.left = leftPos + 'px';
+        heart.style.animationDuration = duration + 's';
+        
+        container.appendChild(heart);
+        
+        // Удаляем элемент после анимации
+        setTimeout(() => { heart.remove(); }, duration * 1000);
+      }, 400); // Лайк каждые 400мс
+    })();
   </script>
 
   <script>
