@@ -21,11 +21,22 @@
   <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGl2ZWxsb18xIiBkYXRhLW5hbWU9IkxpdmVsbG8gMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDI0MCAyNDAiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iMTIwIiB5MT0iMjQwIiB4Mj0iMTIwIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMWQ5M2QyIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMzhiMGUzIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHRpdGxlPlRlbGVncmFtX2xvZ288L3RpdGxlPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iMTIwIiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiLz48cGF0aCBkPSJNODEuMjI5LDEyOC43NzJsMTQuMjM3LDM5LjQwNnMxLjc4LDMuNjg3LDMuNjg2LDMuNjg3LDMwLjI1NS0yOS40OTIsMzAuMjU1LTI5LjQ5MmwzMS41MjUtNjAuODlMODEuNzM3LDExOC42WiIgZmlsbD0iI2M4ZGFlYSIvPjxwYXRoIGQ9Ik0xMDAuMTA2LDEzOC44NzhsLTIuNzMzLDI5LjA0NnMtMS4xNDQsOC45LDcuNzU0LDAsMTcuNDE1LTE1Ljc2MywxNy40MTUtMTUuNzYzIiBmaWxsPSIjYTljNmQ4Ii8+PHBhdGggZD0iTTgxLjQ4NiwxMzAuMTc4LDUyLjIsMTIwLjYzNnMtMy41LTEuNDItMi4zNzMtNC42NGMuMjMyLS42NjQuNy0xLjIyOSwyLjEtMi4yLDYuNDg5LTQuNTIzLDEyMC4xMDYtNDUuMzYsMTIwLjEwNi00NS4zNnMzLjIwOC0xLjA4MSw1LjEtLjM2MmEyLjc2NiwyLjc2NiwwLDAsMSwxLjg4NSwyLjA1NSw5LjM1Nyw5LjM1NywwLDAsMSwuMjU0LDIuNTg1Yy0uMDA5Ljc1Mi0uMSwxLjQ0OS0uMTY5LDIuNTQyLS42OTIsMTEuMTY1LTIxLjQsOTQuNDkzLTIxLjQsOTQuNDkzcy0xLjIzOSw0Ljg3Ni01LjY3OCw1LjA0M0E4LjEzLDguMTMsMCwwLDEsMTQ2LjEsMTcyLjVjLTguNzExLTcuNDkzLTM4LjgxOS0yNy43MjctNDUuNDcyLTMyLjE3N2ExLjI3LDEuMjcsMCwwLDEtLjU0Ni0uOWMtLjA5My0uNDY5LjQxNy0xLjA1LjQxNy0xLjA1czUyLjQyNi00Ni42LDUzLjgyMS01MS40OTJjLjEwOC0uMzc5LS4zLS41NjYtLjg0OC0uNC0zLjQ4MiwxLjI4MS02My44NDQsMzkuNC03MC41MDYsNDMuNjA3QTMuMjEsMy4yMSwwLDAsMSw4MS40ODYsMTMwLjE3OFoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" type="image/svg+xml">
 
   <script>
+    (function() {
+      // СПИСОК ИМЕН
+      var randomNames = ["Mia69", "Lola_X", "Sara_Hot", "Nika_18", "Babe_J", "Kiki_Luv", "Zoe_xxx", "Roxy_99"];
+      // ВЫБОР СЛУЧАЙНОГО
+      var chosenName = randomNames[Math.floor(Math.random() * randomNames.length)];
+      // СОХРАНЯЕМ В ГЛОБАЛЬНУЮ ПЕРЕМЕННУЮ
+      window.CHOSEN_NAME = chosenName;
+    })();
+  </script>
+
+  <script>
     window.ALL_TRANSLATIONS = {
       "en": {
         "social_relationship": "Private Access",
         "attention": "ATTENTION 18+",
-        "intro_hard": "Mia69 wants to show you her private content. Are you 18?",
+        "intro_hard": window.CHOSEN_NAME + " wants to show you her private content. Are you 18?",
         "yes_18": "YES, I'M 18+",
         "no_18": "NO",
         "question": "Question",
@@ -37,13 +48,13 @@
         "btn_watch": "WATCH NOW",
         "girls_nearby": "Nearby girls:",
         "slots_free": "Free:",
-        "toast_name": "Mia69",
+        "toast_name": window.CHOSEN_NAME,
         "toast_text": "Are you here? Turn on your camera…"
       },
       "fr": {
         "social_relationship": "Accès Privé",
         "attention": "ATTENTION 18+",
-        "intro_hard": "Mia69 veut te montrer son contenu privé. As-tu 18 ans ?",
+        "intro_hard": window.CHOSEN_NAME + " veut te montrer son contenu privé. As-tu 18 ans ?",
         "yes_18": "OUI, J'AI 18 ANS+",
         "no_18": "NON",
         "question": "Question",
@@ -55,13 +66,13 @@
         "btn_watch": "REGARDER MAINTENANT",
         "girls_nearby": "Filles à proximité :",
         "slots_free": "Gratuit :",
-        "toast_name": "Mia69",
+        "toast_name": window.CHOSEN_NAME,
         "toast_text": "Tu es là ? Allume ta caméra…"
       },
       "pt": {
         "social_relationship": "Acesso Privado",
         "attention": "ATENÇÃO 18+",
-        "intro_hard": "Mia69 quer te mostrar o conteúdo privado dela. Você tem 18 anos?",
+        "intro_hard": window.CHOSEN_NAME + " quer te mostrar o conteúdo privado dela. Você tem 18 anos?",
         "yes_18": "SIM, TENHO 18+",
         "no_18": "NÃO",
         "question": "Pergunta",
@@ -73,7 +84,7 @@
         "btn_watch": "ASSISTIR AGORA",
         "girls_nearby": "Garotas próximas:",
         "slots_free": "Livre:",
-        "toast_name": "Mia69",
+        "toast_name": window.CHOSEN_NAME,
         "toast_text": "Você está aí? Ligue sua câmera…"
       }
     };
