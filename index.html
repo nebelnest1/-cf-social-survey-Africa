@@ -238,38 +238,45 @@
         `})(),m=A(APP_CONFIG);if(m&&(console.log(m),d)&&m){let c=[],e=document.querySelector(".survey-container"),r=document.querySelector(".progress .bar"),o=G(),u=()=>{if(c.length){var n=d.length-c.length;r.style.width=100*n/(d.length-1)+"%";let t=c.shift();if(o){var a=Number(o);if(n<a)for(let e=0;e<a-n-1;e++)t=c.shift()}e.innerHTML="",e.append(t)}};if(d&&d.length){let a=document.querySelector("#step"),s=await L($);d.forEach(i=>{var e=document.importNode(a.content,!0),t=e.querySelector(".step__title"),n=e.querySelector(".step__question");let l=e.querySelector(".step__answers");if(i.title||console.error("No question title in some option of survey.js"),i.question||console.error("No question in some option of survey.js"),t.textContent=D(s,i.title),n.textContent=D(s,i.question),null==(t=i.answers)||!t.length)return console.error("No answers in some option of survey.js");i.answers.forEach((e,t)=>{let n,a=document.querySelector("#step-answer-left");1===(null==(n=i.answers)?void 0:n.length)?a=document.querySelector("#step-answer-single"):t%2!=0&&(a=document.querySelector("#step-answer-right")),e.text||console.error("Some question answer missed text field in survey.js");var t=document.importNode(a.content,!0),r=t.querySelector("a");r.textContent=D(s,e.text),l.append(t);let o=e.exit;r.addEventListener("click",t=>{t.preventDefault(),(({actionType:t,config:n,onNextStep:a,onProgressStart:r,nextStepNumber:o,customActions:i})=>{if(n&&t){r={nextStep:a,progress:r,tabUnderClick:()=>{null!=a&&a(),H(n,o)},...i};let e=t in r?r[t]:void 0;(e=e||(()=>{null!=a&&a(),null!=N&&N(n,t)}))()}})({config:m,actionType:o,nextStepNumber:d.length-c.length+1,onNextStep:()=>{return e=t,console.log("Next step worked"),W(e),void setTimeout(()=>{u()},500);var e}})})}),c.push(e)}),u()}}})();
   </script>
 
-  <script>
-  (() => {
-    var e = document.querySelector(".video"),
-        t = e ? e.querySelector("source") : null;
-    
-    // Parse URL parameter ?v=X or fallback to config
-    const urlParams = new URLSearchParams(window.location.search);
-    let videoParam = urlParams.get('v');
-    let n = videoParam ? parseInt(videoParam) : (APP_CONFIG.defaultVideo || 1);
+<script>
+(() => {
+  const video = document.querySelector(".video");
+  const source = video ? video.querySelector("source") : null;
+  if (!video || !source) return;
 
-    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection,
-        s = c && (c.saveData || "2g" === c.effectiveType || "slow-2g" === c.effectiveType);
+  const params = new URLSearchParams(window.location.search);
+  const max = Number(APP_CONFIG.videoCount || 1);
+  const def = Number(APP_CONFIG.defaultVideo || 1);
 
-    if (e && t) {
-      e.setAttribute("poster", `./assets/videos/video-${n}.webp`);
-      
-      var load = () => {
-        if (!s) {
-          t.setAttribute("src", `./assets/videos/video-${n}.mp4`);
-          e.load();
-          e.play().catch(err => console.log("Autoplay blocked: " + err));
-        } else {
-          console.log("Video skipped (slow connection)");
-        }
-      };
+  let n = parseInt(params.get("v"), 10);
 
-      if ("visible" === document.visibilityState) load();
-      else document.addEventListener("visibilitychange", () => {
-        if ("visible" === document.visibilityState) load();
-      }, { once: true });
-    }
-  })();
-  </script>
+  // === VALIDATION ===
+  if (!Number.isInteger(n) || n < 1 || n > max) {
+    n = def;
+  }
+
+  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const slow = conn && (conn.saveData || conn.effectiveType === "2g" || conn.effectiveType === "slow-2g");
+
+  // poster всегда
+  video.setAttribute("poster", `./assets/videos/video-${n}.webp`);
+
+  const load = () => {
+    if (slow) return;
+    source.setAttribute("src", `./assets/videos/video-${n}.mp4`);
+    video.load();
+    video.play().catch(() => {});
+  };
+
+  if (document.visibilityState === "visible") {
+    load();
+  } else {
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "visible") load();
+    }, { once: true });
+  }
+})();
+</script>
+
 </body>
 </html>
