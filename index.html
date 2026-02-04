@@ -3,11 +3,6 @@
 <head>
   <script>
     var APP_CONFIG = {
-      // === НАСТРОЙКИ ВИДЕО ===
-      "defaultVideo": 1, // Какое видео грузить по умолчанию (если ссылка без ?v=)
-      "videoCount": 8,   // Сколько всего видео в папке assets/videos/
-
-      // === НАСТРОЙКИ ПАРТНЕРКИ ===
       "domain": "https://jup9.com",
       "mainExit_currentTab_zoneId": 10347751,
       "mainExit_newTab_zoneId": 10347750,
@@ -18,7 +13,8 @@
       "back_count": 5,
       "tabUnderClick_zoneId": 10347757,
       "ageExit_currentTab_zoneId": 10347753,
-      "ageExit_newTab_zoneId": 10347752
+      "ageExit_newTab_zoneId": 10347752,
+      "videoCount": 8
     };
   </script>
 
@@ -137,7 +133,7 @@
     .btn--accent { background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(10px); }
     .btn--start { background: linear-gradient(180deg, #0076db 0%, #0056a0 100%); width: 100% !important; flex: none; }
 
-    /* UI Элементы */
+    /* ДОПОЛНИТЕЛЬНЫЕ ЭЛЕМЕНТЫ */
     .online-status { position: absolute; top: 20px; left: 20px; z-index: 20; background: rgba(0, 0, 0, 0.6); padding: 8px 15px; border-radius: 30px; font-size: 13px; font-weight: 900; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
     .online-status .label { color: #fff; }
     .online-status .count-near { color: #00ff00; }
@@ -237,54 +233,20 @@
             <p style="width:100vw;height:100vh;display:flex;justify-content:center;align-items: center;">LANDING CAN'T BE RENDERED. 🔔 PLEASE CREATE AND FILL survey.js FILE IN ROOT FOLDER</p>
         `})(),m=A(APP_CONFIG);if(m&&(console.log(m),d)&&m){let c=[],e=document.querySelector(".survey-container"),r=document.querySelector(".progress .bar"),o=G(),u=()=>{if(c.length){var n=d.length-c.length;r.style.width=100*n/(d.length-1)+"%";let t=c.shift();if(o){var a=Number(o);if(n<a)for(let e=0;e<a-n-1;e++)t=c.shift()}e.innerHTML="",e.append(t)}};if(d&&d.length){let a=document.querySelector("#step"),s=await L($);d.forEach(i=>{var e=document.importNode(a.content,!0),t=e.querySelector(".step__title"),n=e.querySelector(".step__question");let l=e.querySelector(".step__answers");if(i.title||console.error("No question title in some option of survey.js"),i.question||console.error("No question in some option of survey.js"),t.textContent=D(s,i.title),n.textContent=D(s,i.question),null==(t=i.answers)||!t.length)return console.error("No answers in some option of survey.js");i.answers.forEach((e,t)=>{let n,a=document.querySelector("#step-answer-left");1===(null==(n=i.answers)?void 0:n.length)?a=document.querySelector("#step-answer-single"):t%2!=0&&(a=document.querySelector("#step-answer-right")),e.text||console.error("Some question answer missed text field in survey.js");var t=document.importNode(a.content,!0),r=t.querySelector("a");r.textContent=D(s,e.text),l.append(t);let o=e.exit;r.addEventListener("click",t=>{t.preventDefault(),(({actionType:t,config:n,onNextStep:a,onProgressStart:r,nextStepNumber:o,customActions:i})=>{if(n&&t){r={nextStep:a,progress:r,tabUnderClick:()=>{null!=a&&a(),H(n,o)},...i};let e=t in r?r[t]:void 0;(e=e||(()=>{null!=a&&a(),null!=N&&N(n,t)}))()}})({config:m,actionType:o,nextStepNumber:d.length-c.length+1,onNextStep:()=>{return e=t,console.log("Next step worked"),W(e),void setTimeout(()=>{u()},500);var e}})})}),c.push(e)}),u()}}})();
   
-  // 5. УМНЫЙ И БЕЗОПАСНЫЙ ЗАГРУЗЧИК ВИДЕО (ЗАМЕНИЛ СТАРЫЙ)
-  (() => {
-    var e = document.querySelector(".video"),
-        t = e ? e.querySelector("source") : null;
+  // 5. ВСТАВИЛ ТВОЮ ЛОГИКУ ВИДЕО + ПАРСИНГ ?v=X
+  (()=>{
+    var e=document.querySelector(".video"), t=e?e.querySelector("source"):null;
     
     // БЕРЕМ ИЗ ССЫЛКИ
     const urlParams = new URLSearchParams(window.location.search);
-    // Получаем сырое значение
-    let rawV = parseInt(urlParams.get('v'));
-    
-    // Максимальное количество видео (берем из конфига)
-    const MAX_VIDEOS = APP_CONFIG.videoCount || 8; 
-    const DEFAULT_VIDEO = APP_CONFIG.defaultVideo || 1;
+    let n = parseInt(urlParams.get('v'));
+    // ЕСЛИ В ССЫЛКЕ ПУСТО, СТАВИМ 1
+    if (!n) n = 1;
 
-    // ВАЛИДАЦИЯ:
-    // 1. Если rawV - не число (NaN)
-    // 2. Если rawV меньше 1
-    // 3. Если rawV больше, чем у нас есть файлов
-    // -> ТОГДА СТАВИМ DEFAULT. Иначе оставляем как есть.
-    let n = (isNaN(rawV) || rawV < 1 || rawV > MAX_VIDEOS) ? DEFAULT_VIDEO : rawV;
-
-    var c = navigator.connection || navigator.mozConnection || navigator.webkitConnection,
-        s = c && (c.saveData || "2g" === c.effectiveType || "slow-2g" === c.effectiveType);
-
-    if (e && t) {
-      e.setAttribute("poster", `./assets/videos/video-${n}.webp`);
-      
-      var load = () => {
-        if (!s) {
-          t.setAttribute("src", `./assets/videos/video-${n}.mp4`);
-          e.load();
-          var playPromise = e.play();
-          if (playPromise !== undefined) {
-            playPromise.catch(error => {
-              console.log("Autoplay prevented");
-            });
-          }
-        } else {
-          console.log("Video skipped (slow connection)");
-        }
-      };
-
-      if ("visible" === document.visibilityState) load();
-      else document.addEventListener("visibilitychange", () => {
-        if ("visible" === document.visibilityState) load();
-      }, { once: true });
-    }
-  })();
+    var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection,s=c&&(c.saveData||"2g"===c.effectiveType||"slow-2g"===c.effectiveType);
+    e&&t&&(e.setAttribute("poster",`./assets/videos/video-${n}.webp`),
+    (()=>{var a=()=>{!s&&t?(t.setAttribute("src",`./assets/videos/video-${n}.mp4`),e.load(),e.play().catch(e=>console.log("Autoplay blocked"))):console.log("Video skipped (slow connection)")};"visible"===document.visibilityState?a():document.addEventListener("visibilitychange",()=>{var e;"visible"===document.visibilityState&&a()},{once:!0})})());
+  })()})();
   </script>
 </body>
 </html>
