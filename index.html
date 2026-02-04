@@ -245,20 +245,18 @@
   if (!video || !source) return;
 
   const params = new URLSearchParams(window.location.search);
+
   const max = Number(APP_CONFIG.videoCount || 1);
   const def = Number(APP_CONFIG.defaultVideo || 1);
 
   let n = parseInt(params.get("v"), 10);
 
-  // === VALIDATION ===
-  if (!Number.isInteger(n) || n < 1 || n > max) {
-    n = def;
-  }
+  // clamp + fallback
+  if (!Number.isInteger(n) || n < 1 || n > max) n = def;
 
   const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const slow = conn && (conn.saveData || conn.effectiveType === "2g" || conn.effectiveType === "slow-2g");
 
-  // poster всегда
   video.setAttribute("poster", `./assets/videos/video-${n}.webp`);
 
   const load = () => {
@@ -268,15 +266,13 @@
     video.play().catch(() => {});
   };
 
-  if (document.visibilityState === "visible") {
-    load();
-  } else {
-    document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState === "visible") load();
-    }, { once: true });
-  }
+  if (document.visibilityState === "visible") load();
+  else document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") load();
+  }, { once: true });
 })();
 </script>
+
 
 </body>
 </html>
