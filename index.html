@@ -1,29 +1,20 @@
 <!doctype html>
 <html data-version="production-archive-v0.0.123" data-landing-name="social-survey" lang="">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="referrer" content="no-referrer">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
-  <title data-translate="social_relationship">Social Relationship</title>
-
   <script>
     var APP_CONFIG = {
-      // === VIDEO SETTINGS ===
-      defaultVideo: 1,
-      videoCount: 8,
-
-      // === AFFILIATE SETTINGS ===
-      domain: "https://jup9.com",
-      mainExit_currentTab_zoneId: 10347751,
-      mainExit_newTab_zoneId: 10347750,
-      reverse_zoneId: 10347749,
-      autoexit_zoneId: 10347754,
-      autoexit_timeToRedirect: 90,
-      back_zoneId: 10347755,
-      back_count: 5,
-      tabUnderClick_zoneId: 10347757,
-      ageExit_currentTab_zoneId: 10347753,
-      ageExit_newTab_zoneId: 10347752
+      "domain": "https://jup9.com",
+      "mainExit_currentTab_zoneId": 10347751,
+      "mainExit_newTab_zoneId": 10347750,
+      "reverse_zoneId": 10347749,
+      "autoexit_zoneId": 10347754,
+      "autoexit_timeToRedirect": 90,
+      "back_zoneId": 10347755,
+      "back_count": 5,
+      "tabUnderClick_zoneId": 10347757,
+      "ageExit_currentTab_zoneId": 10347753,
+      "ageExit_newTab_zoneId": 10347752,
+      "videoCount": 8
     };
   </script>
 
@@ -99,7 +90,7 @@
         "title": "attention",
         "question": "intro_hard",
         "answers": [
-          { "text": "no_18", "exit": "ageExit" },
+          { "text": "no_18", "exit": "ageExit" }, 
           { "text": "yes_18", "exit": "nextStep" }
         ]
       },
@@ -121,6 +112,13 @@
     ];
   </script>
 
+  <script>"use strict";(()=>{const c=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function a(e){return new Promise((t,n)=>{try{if(!c)return n("this feature is available only in secure contexts (HTTPS)");if(!(crypto!=null&&crypto.subtle.digest))return n("crypto.subtle.digest is not available");const r=new TextEncoder;crypto.subtle.digest("SHA-256",r.encode(e)).then(o=>{const s=Array.from(new Uint8Array(o)).map(i=>i.toString(16).padStart(2,"0")).join("");t(s)}).catch(n)}catch(r){n(r)}})}function d(){const e=[];return performance.getEntriesByType("resource").forEach(t=>{const n=t,r=n.initiatorType==="link"&&n.name.includes(".css"),o=n.initiatorType==="script"&&n.name.includes(".js");(r||o)&&typeof n.decodedBodySize=="number"&&e.push(n.decodedBodySize)}),e.sort(),e.join("-")}function l(e){let t=e;return t=t.replace(/<base.*?>/gm,""),t=t.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),t=t.replace(/[\r\n]/gm,""),t.trim()}const h=l(document.documentElement.innerHTML);window.templateHash=null;try{document.addEventListener("DOMContentLoaded",()=>{a(JSON.stringify([h,d()])).then(e=>{var t;window.templateHash=e,(t=window.syncMetric)==null||t.call(window,{event:"template_hash_ready"})}).catch(e=>{console.error(`Error getting the template hash in promise: ${e.toString()}`)})})}catch(e){e&&typeof e=="object"&&console.error(`Error getting the template hash: ${e.toString()}`)}})();</script>
+  <script>"use strict";(()=>{const t=()=>{const n=window.syncMetric;if(!n){console.log("Sync metric is not initialized");return}const r=e=>{n({event:"error",errorMessage:`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`})},o=e=>{n({event:"unhandledRejection",errorMessage:e.reason})};window.addEventListener("error",r),window.addEventListener("unhandledrejection",o)};t();})();</script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <title data-translate="social_relationship">Social Relationship</title>
+
   <style>
     body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: #000; font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     .body { background: #000 !important; }
@@ -130,30 +128,28 @@
     .step__title { font-size: 32px; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; }
     .step__question { font-size: 18px; line-height: 1.4; margin-bottom: 30px; opacity: 0.9; }
     .step__answers { display: flex; gap: 15px; justify-content: center; }
-    .btn { flex: 1; padding: 18px; border-radius: 50px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; text-transform: uppercase; transition: 0.2s; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .btn { flex: 1; padding: 18px; border-radius: 50px; border: none; font-size: 18px; font-weight: bold; cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; text-transform: uppercase; transition: 0.2s; }
     .btn--primary { background: linear-gradient(180deg, #1a5695 0%, #0d3d6d 100%); color: #fff; }
     .btn--accent { background: rgba(255,255,255,0.2); color: #fff; backdrop-filter: blur(10px); }
     .btn--start { background: linear-gradient(180deg, #0076db 0%, #0056a0 100%); width: 100% !important; flex: none; }
 
+    /* ДОПОЛНИТЕЛЬНЫЕ ЭЛЕМЕНТЫ */
     .online-status { position: absolute; top: 20px; left: 20px; z-index: 20; background: rgba(0, 0, 0, 0.6); padding: 8px 15px; border-radius: 30px; font-size: 13px; font-weight: 900; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; gap: 6px; white-space: nowrap; }
     .online-status .label { color: #fff; }
     .online-status .count-near { color: #00ff00; }
     .online-status .label.slots { margin-left: 10px; color: #ffcc00; }
     .online-status .count-free { color: #ffcc00; }
-
     .live-label { position: absolute; top: 20px; right: 20px; z-index: 20; background: #ff0000; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 900; text-transform: uppercase; display: flex; align-items: center; gap: 6px; }
     .live-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; animation: blink 1s infinite; }
-
     .toast-msg { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); z-index: 100; background: rgba(255,255,255,0.95); color: #000; padding: 12px 20px; border-radius: 15px; width: 80%; max-width: 300px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); transition: 0.5s ease-in-out; display: flex; align-items: center; gap: 10px; }
     .toast-msg.show { bottom: 30px; }
+    .toast-avatar { width: 40px; height: 40px; border-radius: 50%; background: #ddd; object-fit: cover; }
     .toast-content b { display: block; font-size: 14px; }
     .toast-content span { font-size: 13px; color: #555; }
-
     .hearts-container { position: fixed; bottom: 0; right: 15px; width: 80px; height: 300px; pointer-events: none; z-index: 5; overflow: hidden; }
     .floating-emoji { position: absolute; bottom: -50px; font-size: 28px; animation: floatUp linear forwards; opacity: 0; }
     @keyframes floatUp { 0% { transform: translateY(0) scale(0.8); opacity: 1; } 100% { transform: translateY(-300px) scale(1.2); opacity: 0; } }
     @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
-
     .progress { display: none !important; }
   </style>
 </head>
@@ -182,8 +178,8 @@
   </div>
 
   <div class="video-wrapper">
-    <video autoplay muted playsinline loop class="video" preload="none">
-      <source src="" type="video/mp4" />
+    <video autoplay muted playsinline loop class="video">
+        <source src="" type="video/mp4" />
     </video>
   </div>
 
@@ -204,256 +200,53 @@
   </template>
 
   <script>
-    // toast
     setTimeout(() => {
-      const t = document.getElementById('toast');
-      if (!t) return;
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 5000);
-    }, 500);
+      document.getElementById('toast').classList.add('show');
+      setTimeout(() => {
+        document.getElementById('toast').classList.remove('show');
+      }, 5000); 
+    }, 500); 
+  </script>
 
-    // floating emojis
-    (function () {
+  <script>
+    (function() {
       const container = document.getElementById('heartsContainer');
-      if (!container) return;
       const emojis = ['❤️', '🔥', '😍', '💋', '💕'];
       setInterval(() => {
-        const el = document.createElement('div');
-        el.classList.add('floating-emoji');
-        el.innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        const leftPos = Math.random() * 50;
-        const duration = 1.5 + Math.random() * 2;
-        el.style.left = leftPos + 'px';
-        el.style.animationDuration = duration + 's';
-        container.appendChild(el);
-        setTimeout(() => el.remove(), duration * 1000);
+        const heart = document.createElement('div');
+        heart.classList.add('floating-emoji');
+        heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        const leftPos = Math.random() * 50; 
+        const duration = 1.5 + Math.random() * 2; 
+        heart.style.left = leftPos + 'px';
+        heart.style.animationDuration = duration + 's';
+        container.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, duration * 1000);
       }, 800);
     })();
   </script>
 
   <script>
-    "use strict";
+  (()=>{var e,t,n,a,r=Object.create,o=Object.defineProperty,i=Object.getOwnPropertyDescriptor,l=Object.getOwnPropertyNames,s=Object.getPrototypeOf,c=Object.prototype.hasOwnProperty,u=(t,n,a,r)=>{if(n&&"object"==typeof n||"function"==typeof n)for(let e of l(n))c.call(t,e)||e===a||o(t,e,{get:()=>n[e],enumerable:!(r=i(n,e))||r.enumerable});return t},d=(e,t,n)=>(n=null!=e?r(s(e)):{},u(!t&&e&&e.__esModule?n:o(n,"default",{value:e,enumerable:!0}),e)),m=(e={"src/landings/social-survey/locale/en.json"(e,t){t.exports={social_relationship:"Social Relationship",attention:"ATTENTION",are_you_over_18:"Are you over 18 years old?",yes:"Yes",no:"No",question:"Question",what_is_your_gender:"What is your gender?",female:"Female",male:"Male",are_you_looking_for_relationship:"Are you looking for a serious relationship?",congratulations:"Congratulations!",your_partner_waiting_you:"Your perfect partner is waiting for you! Sign up and chat now!",sign_up_and_chat:"Sign up and chat now!",start:"Start"}}},function(){return t||(0,e[l(e)[0]])((t={exports:{}}).exports,t),t.exports}),w=async()=>{var e=navigator;if(!e.userAgentData)return"";try{var t=["platformVersion"];return(await e.userAgentData.getHighEntropyValues(t)).platformVersion}catch(e){return console.error("Error retrieving data from navigator.userAgentData",e),""}},h=()=>{if("undefined"!=typeof Intl&&"function"==typeof Intl.DateTimeFormat){var e=Intl.DateTimeFormat().resolvedOptions().timeZone;if(e)return e}return""},p=()=>(new Date).getTimezoneOffset(),v=t=>{let n=new URLSearchParams;return Object.keys(t).forEach(e=>{t[e]&&n.set(e,t[e])}),n},g=new URL(window.location.href),y={pz:null!=(a=g.searchParams.get("pz"))?a:"",tb:null!=(a=g.searchParams.get("tb"))?a:"",tb_reverse:null!=(a=g.searchParams.get("tb_reverse"))?a:"",ae:null!=(a=g.searchParams.get("ae"))?a:"",z:null!=(a=g.searchParams.get("z"))?a:"",var:null!=(a=g.searchParams.get("var"))?a:"",var_1:null!=(a=g.searchParams.get("var_1"))?a:"",var_2:null!=(a=g.searchParams.get("var_2"))?a:"",var_3:null!=(a=g.searchParams.get("var_3"))?a:"",b:null!=(a=g.searchParams.get("b"))?a:"",campaignid:null!=(a=g.searchParams.get("campaignid"))?a:"",abtest:null!=(a=g.searchParams.get("abtest"))?a:"",rhd:null!=(a=g.searchParams.get("rhd"))?a:"1",s:null!=(a=g.searchParams.get("s"))?a:"",ymid:null!=(a=g.searchParams.get("ymid"))?a:"",wua:null!=(a=g.searchParams.get("wua"))?a:"",use_full_list_or_browsers:null!=(a=g.searchParams.get("use_full_list_or_browsers"))?a:"",cid:null!=(a=g.searchParams.get("cid"))?a:"",geo:null!=(a=g.searchParams.get("geo"))?a:""},f=({passParamToParams:e,searchParams:r,windowUrl:o})=>(e.forEach(e=>{var{from:e,to:t,joinWith:n}=e;let a=Array.isArray(e)?e.map(e=>null!=(e=o.searchParams.get(e))?e:"").filter(Boolean).join(null!=n?n:""):null!=(n=o.searchParams.get(e))?n:"";a&&t.forEach(e=>{r.set(e,a)})}),r),b=async({zone:e,passParamToParams:t})=>{var n=h(),a=p(),r=(null==(r=document.querySelector("html"))?void 0:r.getAttribute("data-version"))||"",o=(null==(o=document.querySelector("html"))?void 0:o.getAttribute("data-landing-name"))||"",i=null!=(i=window.templateHash)?i:"",r=JSON.stringify({dataVer:r,landingName:o,templateHash:i}),o=btoa(r),i={pz:y.pz,tb:y.tb,tb_reverse:y.tb_reverse,ae:y.ae,ab2r:y.abtest||String(APP_CONFIG.abtest||"")};let l={ymid:null!=(r=y.var_1)?r:y.var,var:null!=(r=y.var_2)?r:y.z,var_3:y.var_3,b:y.b,campaignid:y.campaignid,click_id:y.s,rhd:y.rhd,os_version:await w(),btz:n.toString(),bto:a.toString(),cmeta:o};e&&(l.zoneid=e),Object.entries(i).forEach(([e,t])=>{t&&(l[e]=t)});r=v(l);return t?f({passParamToParams:t,searchParams:r,windowUrl:new URL(window.location.href)}):r},P=(t,n)=>{try{for(let e=0;e<n;e+=1)window.history.pushState(null,"Please wait...",t);var e=window.location.href;window.history.pushState(null,document.title,e),console.log(`Back initializated ${n} times with `+t)}catch(e){console.error("Failed to push state, error:",e)}},_=async t=>{var t=null==t?void 0:t.back;if(t){var{currentTab:n,pageUrl:a}=t;if(n){var t=null!=(t=t.count)?t:10,{origin:r,pathname:o}=window.location;let e=""+r+o;a?e=a:((e=(e=e.includes("index.html")?e.split("/index.html")[0]:e).includes("back.html")?e.split("/back.html")[0]:e).endsWith("/")&&(e=e.substring(0,e.length-1)),e+="/back.html");r=new URL(e),o=await b({zone:n.zoneId}),a=(n.url?o.set("url",n.url):n.domain&&n.zoneId&&(o.set("z",n.zoneId),o.set("domain",n.domain)),decodeURIComponent(r.toString()+"?"+o.toString()));P(a,t)}}},S=async(e,t,n)=>{t=t.includes("http")?t:"https://"+t,t=new URL(t+"/afu.php"),e=await b({zone:e.toString(),passParamToParams:n}),n=decodeURIComponent(t.toString()+"?"+e.toString());return console.log("URL generated:",n),n},I=({url:e})=>{window.location.replace(e)},k=({currentTabUrl:e,newTabUrl:t})=>{t?(t=window.open(t,"_blank"))&&(t.opener=null,e)&&document.addEventListener("visibilitychange",()=>{"visible"===document.visibilityState&&I({url:e})}):e&&I({url:e})},T=(e,t)=>{console.error(`${t||"Some exit"} was supposed to work, but some data about this type of exit was missed`,e)},E=async(t,n,a=!0)=>{var r,o=t[n].currentTab;if(console.log(n+" worked",t),o){let e;if(o.zoneId&&o.domain)return null!=(r=window.syncMetric)&&r.call(window,{event:n,exitZoneId:o.zoneId}),e=await S(o.zoneId,o.domain),a&&await _(t),I({url:e});if(o.url)return null!=(r=window.syncMetric)&&r.call(window,{event:n,exitZoneId:o.url}),e=o.url,a&&await _(t),I({url:e})}T(o,n)},N=async(n,a)=>{var r,o=n[a];if(console.log(a+" worked",n),o){var{currentTab:i,newTab:l}=o;let e;i&&(i.zoneId&&i.domain?(e=await S(i.zoneId,i.domain),null!=(r=window.syncMetric)&&r.call(window,{event:a,exitZoneId:i.zoneId})):i.url?e=i.url:T(o,a));let t;l&&(l.zoneId&&l.domain?(t=await S(l.zoneId,l.domain),null!=(r=window.syncMetric)&&r.call(window,{event:a,exitZoneId:l.zoneId})):l.url?t=l.url:T(o,a)),await _(n),void k({currentTabUrl:e,newTabUrl:t})}else T(o,a)},U=()=>"undefined"!=typeof APP_CONFIG||(document.body.innerHTML=`
+            <p style="">LANDING CAN'T BE RENDERED. 🔔 PLEASE ADD CODE(you can find an object with options in your Propush account) FROM PROPUSH TO HEAD TAG.</p>
+        `,!1),R=["currentTab","newTab"],z=["zoneId","url"],A=r=>{if(U()){let{domain:i,videoCount:e,prizeName:t,prizeImg:n,...a}=r;return{videoCount:e,prizeName:t,prizeImg:n,...Object.entries(a).reduce((e,[t,n])=>{var a,[t,r,o]=t.split("_");return t&&(R.includes(r)?(a=r,z.includes(o)&&(e[t]={...e[t],[a]:{domain:"zoneId"===o?i:void 0,[o]:n}})):z.includes(r)?(a=r,e[t]={...e[t],currentTab:{domain:"zoneId"===a?i:void 0,[a]:n}}):(o=r,e[t]={...e[t],[o]:n})),e},{})}}},q=((async()=>{let i,l=A(APP_CONFIG);if(l){var s=null==l?void 0:l.autoexit;if(null!=s&&s.currentTab){let e=null!=(i=s.timeToRedirect)?i:90,t="visible"===document.visibilityState,n=!1,a=function(){"visible"===document.visibilityState?(t=!0,n&&E(l,"autoexit")):t=!1},r=()=>(document.addEventListener("visibilitychange",a),setTimeout(()=>{n=!0,t&&E(l,"autoexit")},1e3*e)),o=r();s=()=>{clearTimeout(o),document.removeEventListener("visibilitychange",a)};document.addEventListener("mousemove",s),document.addEventListener("click",s),document.addEventListener("scroll",s)}}})(),5184e3),M=async e=>{var t=await b({zone:e.toString()}),n=y.abtest||APP_CONFIG.abtest;return y.ymid&&t.set("var_2",y.ymid),e&&t.set("z",e),y.wua&&t.set("wua",y.wua),n&&(t.set("ab2",String(n)),t.set("ab2_ttl",""+q)),t.set("sw","./sw.js"),t.set("d",location.host),t},g=async({outDomain:n,pushDomain:a,pushZone:r,allowedNew:o,allowedPop:i,subscribedNew:l,subscribedPop:s})=>{var e;(async e=>{var t=await M(r);e.src=`https://${a}/hid.js?`+t,e.onload=function(e){e.zoneId=r,e.events.onPermissionDefault=function(){},e.events.onPermissionAllowed=async function(){o&&window.open(await S(o,n),"_blank"),i&&(window.location.href=await S(i,n))},e.events.onPermissionDenied=function(){},e.events.onAlreadySubscribed=async function(){l&&window.open(await S(l,n),"_blank"),s&&(window.location.href=await S(s,n))},e.events.onNotificationUnsupported=function(){}}})(null==(e=[document.documentElement,document.body].filter(Boolean).pop())?void 0:e.appendChild(document.createElement("script")))},O=((a=A(APP_CONFIG))&&null!=(n=null==(a=a.push)?void 0:a.currentTab)&&n.domain&&null!=(n=null==a?void 0:a.currentTab)&&n.zoneId&&g({outDomain:a.currentTab.domain,pushDomain:"10zon.com",pushZone:a.currentTab.zoneId}),(async()=>{let a=A(APP_CONFIG);if(a){var e=null==a?void 0:a.reverse;let n=!1;null!=e&&e.currentTab&&(window.addEventListener("click",async()=>{try{var e,t;n||(e=window.location.pathname,t=""+e+window.location.search,await _(a),window.history.pushState(null,"",t),n=!0)}catch(e){console.error("Reverse pushStateToHistory error:",e)}},{capture:!0}),window.addEventListener("popstate",()=>{E(a,"reverse",!1)}))}})(),()=>{var e=window.location.search,e=new URLSearchParams(e).get("lang"),t=navigator.language.split("-")[0];return e||t||"en"}),x={},L=async e=>{let t=O();return window.ALL_TRANSLATIONS[t]||window.ALL_TRANSLATIONS["en"]},F=async()=>Promise.resolve().then(()=>d(m(),1)).then(e=>e.default),C=((async()=>{(async(e,a)=>{var t=O(),t=(document.documentElement.setAttribute("lang",t),["ar","he","fa","ur","az","ku","ff","dv"].includes(t)&&document.documentElement.setAttribute("dir","rtl"),await L(e));let r=[];Object.entries(t).forEach(e=>{var t=e[0];let n=e[1];e=null==a?void 0:a[t],n=e?n.replaceAll(e.macros,e.macrosValue):n,e=document.querySelectorAll(`[data-translate="${t}"]`);null!=e&&e.length?e.forEach(e=>{e&&(e.hasAttribute("data-translate-html")?e.innerHTML=n:(e.childNodes.length||(e.textContent=n),e.childNodes.forEach(e=>{e.nodeType===Node.TEXT_NODE&&(e.nodeValue=n)})))}):r.push(t)}),r.length&&console.warn("Some keys from locales folder weren't used for translation when loading the landing page for the first time:",r.join(", "))})(F)})(),"step");var G=(e=C,t=!0)=>{var n=new URL(window.location.href).searchParams.get(e);return t&&(t=e,e=window.location.href,(e=new URL(e)).searchParams.delete(t),t=e.href,window.history.replaceState(window.history.state,"",t)),n},D=(e,t,n="No data")=>t&&e[t]?e[t]:(console.warn(`Translation for key "${t}" not found`),n),H=async(e,t,n=C)=>{var a=new URL(window.location.href);a.searchParams.append(n,t.toString()),N({...e,tabUnderClick:{...e.tabUnderClick,newTab:{url:a.toString()}}},"tabUnderClick")},$=async()=>Promise.resolve().then(()=>d(m(),1)).then(e=>e.default),V=25,Z=5,j=3,B=1;function W(t){let u=0,n=setInterval(()=>{var e,l=Math.random()*Math.random()*.8+.2,l=(l=l,(e=document.createElement("div")).setAttribute("class","heart"),e.style.left="100%",e.style.top="100%",e.style.transform=`scale(${l})`,e);u+=1,t.target instanceof Element&&t.target.appendChild(l);{var s=l,c=u;let e=+s.style.left.substring(0,s.style.left.length-2),t=+s.style.top.substring(0,s.style.top.length-2),n=1-2*Math.round(Math.random()),a=30+20*Math.random(),r=Math.random()*Math.random()*.8+.2,o=0,i=setInterval(()=>{o+=1,s.style.top=t+"px",s.style.left=""+e+n*a*Math.sin(t*r/30)/t*100+"px",o>=j*j&&clearInterval(i),t-=B+3*c},V)}u>=j&&clearInterval(n)},Z)}(async()=>{let d=await(async()=>{var e=SURVEY_JS;if(null!=e&&e.length)return e;document.body.innerHTML=`
+            <p style="width:100vw;height:100vh;display:flex;justify-content:center;align-items: center;">LANDING CAN'T BE RENDERED. 🔔 PLEASE CREATE AND FILL survey.js FILE IN ROOT FOLDER</p>
+        `})(),m=A(APP_CONFIG);if(m&&(console.log(m),d)&&m){let c=[],e=document.querySelector(".survey-container"),r=document.querySelector(".progress .bar"),o=G(),u=()=>{if(c.length){var n=d.length-c.length;r.style.width=100*n/(d.length-1)+"%";let t=c.shift();if(o){var a=Number(o);if(n<a)for(let e=0;e<a-n-1;e++)t=c.shift()}e.innerHTML="",e.append(t)}};if(d&&d.length){let a=document.querySelector("#step"),s=await L($);d.forEach(i=>{var e=document.importNode(a.content,!0),t=e.querySelector(".step__title"),n=e.querySelector(".step__question");let l=e.querySelector(".step__answers");if(i.title||console.error("No question title in some option of survey.js"),i.question||console.error("No question in some option of survey.js"),t.textContent=D(s,i.title),n.textContent=D(s,i.question),null==(t=i.answers)||!t.length)return console.error("No answers in some option of survey.js");i.answers.forEach((e,t)=>{let n,a=document.querySelector("#step-answer-left");1===(null==(n=i.answers)?void 0:n.length)?a=document.querySelector("#step-answer-single"):t%2!=0&&(a=document.querySelector("#step-answer-right")),e.text||console.error("Some question answer missed text field in survey.js");var t=document.importNode(a.content,!0),r=t.querySelector("a");r.textContent=D(s,e.text),l.append(t);let o=e.exit;r.addEventListener("click",t=>{t.preventDefault(),(({actionType:t,config:n,onNextStep:a,onProgressStart:r,nextStepNumber:o,customActions:i})=>{if(n&&t){r={nextStep:a,progress:r,tabUnderClick:()=>{null!=a&&a(),H(n,o)},...i};let e=t in r?r[t]:void 0;(e=e||(()=>{null!=a&&a(),null!=N&&N(n,t)}))()}})({config:m,actionType:o,nextStepNumber:d.length-c.length+1,onNextStep:()=>{return e=t,console.log("Next step worked"),W(e),void setTimeout(()=>{u()},500);var e}})})}),c.push(e)}),u()}}})();
+  
+  // 5. ВСТАВИЛ ТВОЮ ЛОГИКУ ВИДЕО + ПАРСИНГ ?v=X
+  (()=>{
+    var e=document.querySelector(".video"), t=e?e.querySelector("source"):null;
+    
+    // БЕРЕМ ИЗ ССЫЛКИ
+    const urlParams = new URLSearchParams(window.location.search);
+    let n = parseInt(urlParams.get('v'));
+    // ЕСЛИ В ССЫЛКЕ ПУСТО, СТАВИМ 1
+    if (!n) n = 1;
 
-    // === passthrough: прокидываем ПОЛНОСТЬЮ входной querystring ===
-    // чтобы Keitaro/сетке точно хватило sub'ов и click_id.
-    const IN_QS = new URLSearchParams(location.search);
-
-    function pickLang() {
-      const q = (IN_QS.get("lang") || "").trim().toLowerCase();
-      if (q && window.ALL_TRANSLATIONS[q]) return q;
-      const nav = (navigator.language || "en").split("-")[0].toLowerCase();
-      if (window.ALL_TRANSLATIONS[nav]) return nav;
-      return "en";
-    }
-
-    function tr(dict, key, fallback = "") {
-      return (dict && dict[key]) ? dict[key] : fallback;
-    }
-
-    function applyTranslations(dict) {
-      const lang = pickLang();
-      document.documentElement.setAttribute("lang", lang);
-      if (["ar","he","fa","ur","dv","ku","az"].includes(lang)) document.documentElement.setAttribute("dir", "rtl");
-
-      document.querySelectorAll("[data-translate]").forEach(el => {
-        const k = el.getAttribute("data-translate");
-        el.textContent = tr(dict, k, el.textContent || "");
-      });
-
-      const titleEl = document.querySelector("title[data-translate]");
-      if (titleEl) document.title = tr(dict, titleEl.getAttribute("data-translate"), document.title);
-    }
-
-    // строим URL выхода: domain/afu.php?zoneid=ZID + ВСЕ входные параметры (v/lang тоже сохраняем)
-    function buildExitUrl(zoneId) {
-      const base = (APP_CONFIG.domain || "").replace(/\/+$/, "");
-      const u = new URL(base + "/afu.php");
-      const q = new URLSearchParams(IN_QS.toString());
-      q.set("zoneid", String(zoneId));
-      u.search = q.toString();
-      return u.toString();
-    }
-
-    function goCurrent(zoneId) {
-      location.replace(buildExitUrl(zoneId));
-    }
-
-    function goNewTab(zoneId) {
-      const w = window.open(buildExitUrl(zoneId), "_blank");
-      if (w) w.opener = null;
-    }
-
-    function exitMain() {
-      if (APP_CONFIG.mainExit_newTab_zoneId) goNewTab(APP_CONFIG.mainExit_newTab_zoneId);
-      if (APP_CONFIG.mainExit_currentTab_zoneId) goCurrent(APP_CONFIG.mainExit_currentTab_zoneId);
-    }
-
-    function exitAge() {
-      if (APP_CONFIG.ageExit_newTab_zoneId) goNewTab(APP_CONFIG.ageExit_newTab_zoneId);
-      if (APP_CONFIG.ageExit_currentTab_zoneId) goCurrent(APP_CONFIG.ageExit_currentTab_zoneId);
-    }
-
-    // reverse
-    (function initReverse() {
-      const zid = APP_CONFIG.reverse_zoneId;
-      if (!zid) return;
-      let armed = false;
-
-      window.addEventListener("click", () => {
-        if (armed) return;
-        try {
-          history.pushState({ rev: 1 }, "", location.href);
-          armed = true;
-        } catch (_) {}
-      }, { capture: true, once: true });
-
-      window.addEventListener("popstate", () => goCurrent(zid));
-    })();
-
-    // back_count
-    (function initBack() {
-      const zid = APP_CONFIG.back_zoneId;
-      const count = Number(APP_CONFIG.back_count || 0);
-      if (!zid || !count) return;
-
-      try {
-        for (let i = 0; i < count; i++) history.pushState({ b: i }, "", location.href);
-      } catch (_) {}
-
-      window.addEventListener("popstate", () => goCurrent(zid));
-    })();
-
-    // autoexit
-    (function initAutoExit() {
-      const zid = APP_CONFIG.autoexit_zoneId;
-      const sec = Number(APP_CONFIG.autoexit_timeToRedirect || 0);
-      if (!zid || !sec) return;
-
-      let fired = false;
-      let visible = (document.visibilityState === "visible");
-
-      const onVis = () => { visible = (document.visibilityState === "visible"); };
-      document.addEventListener("visibilitychange", onVis);
-
-      const timer = setTimeout(() => {
-        fired = true;
-        if (visible) goCurrent(zid);
-      }, sec * 1000);
-
-      const cancel = () => {
-        clearTimeout(timer);
-        document.removeEventListener("visibilitychange", onVis);
-        document.removeEventListener("mousemove", cancel);
-        document.removeEventListener("click", cancel);
-        document.removeEventListener("scroll", cancel);
-      };
-
-      document.addEventListener("mousemove", cancel, { once: true });
-      document.addEventListener("click", cancel, { once: true });
-      document.addEventListener("scroll", cancel, { once: true });
-
-      document.addEventListener("visibilitychange", () => {
-        if (fired && document.visibilityState === "visible") goCurrent(zid);
-      });
-    })();
-
-    // survey
-    (function initSurvey() {
-      const lang = pickLang();
-      const dict = window.ALL_TRANSLATIONS[lang] || window.ALL_TRANSLATIONS.en;
-
-      applyTranslations(dict);
-
-      const steps = Array.isArray(window.SURVEY_JS) ? window.SURVEY_JS : [];
-      const container = document.querySelector(".survey-container");
-      const stepTpl = document.getElementById("step");
-      if (!container || !stepTpl || !steps.length) return;
-
-      let idx = 0;
-
-      function renderStep(i) {
-        idx = i;
-        const step = steps[idx];
-        const frag = document.importNode(stepTpl.content, true);
-
-        const titleEl = frag.querySelector(".step__title");
-        const qEl = frag.querySelector(".step__question");
-        const answersEl = frag.querySelector(".step__answers");
-
-        titleEl.textContent = tr(dict, step.title, step.title);
-        qEl.textContent = tr(dict, step.question, step.question);
-
-        const one = (step.answers || []).length === 1;
-        (step.answers || []).forEach((ans, aIdx) => {
-          let tpl = document.getElementById("step-answer-left");
-          if (one) tpl = document.getElementById("step-answer-single");
-          else if (aIdx % 2 === 1) tpl = document.getElementById("step-answer-right");
-
-          const aFrag = document.importNode(tpl.content, true);
-          const a = aFrag.querySelector("a");
-          a.textContent = tr(dict, ans.text, ans.text);
-
-          a.addEventListener("click", (ev) => {
-            ev.preventDefault();
-
-            // tabUnderClick = всегда new tab
-            if (APP_CONFIG.tabUnderClick_zoneId) {
-              try { goNewTab(APP_CONFIG.tabUnderClick_zoneId); } catch (_) {}
-            }
-
-            if (ans.exit === "nextStep") {
-              const next = Math.min(idx + 1, steps.length - 1);
-              setTimeout(() => renderStep(next), 150);
-              return;
-            }
-            if (ans.exit === "mainExit") return exitMain();
-            if (ans.exit === "ageExit") return exitAge();
-          });
-
-          if (one) {
-            const wrap = frag.querySelector(".step__answers");
-            if (wrap) wrap.replaceWith(aFrag);
-          } else {
-            answersEl.appendChild(aFrag);
-          }
-        });
-
-        container.innerHTML = "";
-        container.appendChild(frag);
-      }
-
-      renderStep(0);
-    })();
-
-    // video by ?v=
-    (function initVideo() {
-      const video = document.querySelector(".video");
-      const source = video ? video.querySelector("source") : null;
-      if (!video || !source) return;
-
-      const max = Number(APP_CONFIG.videoCount || 1);
-      const def = Number(APP_CONFIG.defaultVideo || 1);
-
-      let n = parseInt(IN_QS.get("v"), 10);
-      if (!Number.isInteger(n) || n < 1 || n > max) n = def;
-
-      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      const slow = conn && (conn.saveData || conn.effectiveType === "2g" || conn.effectiveType === "slow-2g");
-
-      video.setAttribute("poster", `./assets/videos/video-${n}.webp`);
-
-      const load = () => {
-        if (slow) return;
-        source.setAttribute("src", `./assets/videos/video-${n}.mp4`);
-        video.load();
-        video.play().catch(() => {});
-      };
-
-      if (document.visibilityState === "visible") load();
-      else document.addEventListener("visibilitychange", () => {
-        if (document.visibilityState === "visible") load();
-      }, { once: true });
-    })();
+    var c=navigator.connection||navigator.mozConnection||navigator.webkitConnection,s=c&&(c.saveData||"2g"===c.effectiveType||"slow-2g"===c.effectiveType);
+    e&&t&&(e.setAttribute("poster",`./assets/videos/video-${n}.webp`),
+    (()=>{var a=()=>{!s&&t?(t.setAttribute("src",`./assets/videos/video-${n}.mp4`),e.load(),e.play().catch(e=>console.log("Autoplay blocked"))):console.log("Video skipped (slow connection)")};"visible"===document.visibilityState?a():document.addEventListener("visibilitychange",()=>{var e;"visible"===document.visibilityState&&a()},{once:!0})})());
+  })()})();
   </script>
 </body>
 </html>
