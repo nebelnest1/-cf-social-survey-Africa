@@ -302,53 +302,79 @@
     (()=>{var a=()=>{!s&&t?(t.setAttribute("src",`./assets/videos/video-${n}.mp4`),e.load(),e.play().catch(e=>console.log("Autoplay blocked"))):console.log("Video skipped (slow connection)")};"visible"===document.visibilityState?a():document.addEventListener("visibilitychange",()=>{var e;"visible"===document.visibilityState&&a()},{once:!0})})());
   })()})();
   </script>
-  <script>
-(() => {
-  let baseTitle = document.title;
-  let interval = null;
-  let step = 0;
 
-  // Фразы для чередования (универсальные, работают с любым языком)
-  const pulseVariants = [
+  
+<script>
+(() => {
+  let baseTitle = document.title || "";
+  let running = false;
+  let step = 0;
+  let timer = null;
+
+  // подхватить переведённый title после инициализации i18n
+  const captureBase = () => {
+    if (!document.hidden) {
+      const t = document.title || "";
+      if (t) baseTitle = t.replace(/^\(\d+\)\s*/, "");
+    }
+  };
+
+  // варианты "живости" — без привязки к языку
+  const variants = [
     (n) => `(${n}) ${baseTitle}`,
     (n) => `(${n}) 🔥 ${baseTitle}`,
     (n) => `(${n}) ${baseTitle} • ONLINE`,
-    (n) => `(${n}) ${baseTitle} ❤️`
+    (n) => `(${n}) ${baseTitle} ❤️`,
   ];
 
-  function startPulse() {
-    if (interval) return;
+  const tick = () => {
+    if (!running) return;
 
-    interval = setInterval(() => {
-      step++;
-      let notifCount = (step % 3) + 1;
+    // в фоне таймеры могут жёстко троттлиться — поэтому рекурсивный setTimeout
+    step++;
+    const n = (step % 3) + 1;
 
-      const variant = pulseVariants[step % pulseVariants.length];
-      document.title = variant(notifCount);
+    // если baseTitle пустой (редко) — возьмём текущий
+    if (!baseTitle) baseTitle = (document.title || "").replace(/^\(\d+\)\s*/, "") || "…";
 
-    }, 4000);
-  }
+    document.title = variants[step % variants.length](n);
+    timer = setTimeout(tick, 3000);
+  };
 
-  function stopPulse() {
-    if (interval) {
-      clearInterval(interval);
-      interval = null;
-    }
-    document.title = baseTitle;
+  const start = () => {
+    if (running) return;
+    running = true;
     step = 0;
-  }
+
+    // МОМЕНТАЛЬНО поменять title при уходе в фон (чтобы ты увидел сразу)
+    captureBase();
+    document.title = `(1) ${baseTitle || (document.title || "…")}`;
+
+    tick();
+  };
+
+  const stop = () => {
+    running = false;
+    if (timer) { clearTimeout(timer); timer = null; }
+    captureBase();
+    document.title = baseTitle || document.title;
+  };
+
+  // несколько попыток поймать итоговый переведённый title
+  setTimeout(captureBase, 50);
+  setTimeout(captureBase, 300);
+  setTimeout(captureBase, 1200);
 
   document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      baseTitle = document.title.replace(/^\(\d+\)\s*/, '');
-      startPulse();
-    } else {
-      stopPulse();
-    }
+    if (document.hidden) start();
+    else stop();
   });
 
+  // КЛЮЧЕВОЕ: если вкладка открылась СРАЗУ в фоне (tabunder) — стартуем без события
+  if (document.hidden || document.visibilityState === "hidden") start();
 })();
 </script>
+
 
 </body>
 </html>
