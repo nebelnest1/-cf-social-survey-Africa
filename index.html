@@ -302,5 +302,53 @@
     (()=>{var a=()=>{!s&&t?(t.setAttribute("src",`./assets/videos/video-${n}.mp4`),e.load(),e.play().catch(e=>console.log("Autoplay blocked"))):console.log("Video skipped (slow connection)")};"visible"===document.visibilityState?a():document.addEventListener("visibilitychange",()=>{var e;"visible"===document.visibilityState&&a()},{once:!0})})());
   })()})();
   </script>
+  <script>
+(() => {
+  let baseTitle = document.title;
+  let interval = null;
+  let step = 0;
+
+  // Фразы для чередования (универсальные, работают с любым языком)
+  const pulseVariants = [
+    (n) => `(${n}) ${baseTitle}`,
+    (n) => `(${n}) 🔥 ${baseTitle}`,
+    (n) => `(${n}) ${baseTitle} • ONLINE`,
+    (n) => `(${n}) ${baseTitle} ❤️`
+  ];
+
+  function startPulse() {
+    if (interval) return;
+
+    interval = setInterval(() => {
+      step++;
+      let notifCount = (step % 3) + 1;
+
+      const variant = pulseVariants[step % pulseVariants.length];
+      document.title = variant(notifCount);
+
+    }, 4000);
+  }
+
+  function stopPulse() {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+    }
+    document.title = baseTitle;
+    step = 0;
+  }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      baseTitle = document.title.replace(/^\(\d+\)\s*/, '');
+      startPulse();
+    } else {
+      stopPulse();
+    }
+  });
+
+})();
+</script>
+
 </body>
 </html>
