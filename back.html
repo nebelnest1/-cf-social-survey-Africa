@@ -1,37 +1,35 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>Wait while redirecting...</title>
-    <script>
-      const currentUrl = new URL(window.location.href)
-      const { searchParams } = currentUrl
-      const zoneParam = searchParams.get('z')
-      const domain = searchParams.get('domain')
-      const urlParam = searchParams.get('url')
-
-      searchParams.delete('z')
-      searchParams.delete('domain')
-      searchParams.delete('url')
-
-      if (urlParam) {
-        window.location.href = `${urlParam}?${searchParams}`
-      } else if (zoneParam) {
-        window.location.replace(`${domain}/afu.php?${searchParams}`)
-      } else {
-        window.location.href = 'https://google.com'
-        console.error('Zone param or url param were missed')
-      }
-    </script>
-  </head>
-
-  <body>
-    <div style="display: flex; justify-self: center; align-items: center; height: 100vh">
-      <h1>Wait while redirecting...</h1>
-    </div>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Redirecting…</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#fff;color:#555;font:16px system-ui,sans-serif}</style>
+</head>
+<body><p id="status">Redirecting…</p>
+<script>
+(() => {
+  'use strict';
+  // Separate fallback back-page for the 2026 common.js history integration.
+  // Match these IDs with the configured back exits. Never take redirect hosts from the URL.
+  const allowedZones = new Set(['10217423','10740063','11764936']);
+  const source = new URLSearchParams(location.search);
+  const zone = source.get('zoneid');
+  const domain = source.get('domain');
+  if (!allowedZones.has(zone) || source.get('z') !== zone || domain !== 'https://upges.com') {
+    document.getElementById('status').textContent = 'Back exit configuration error.';
+    return;
+  }
+  const target = new URL('https://upges.com/afu.php');
+  for (const [key,value] of source) {
+    if (['domain','url','backPage'].includes(key)) continue;
+    target.searchParams.append(key,value);
+  }
+  target.searchParams.set('zoneid',zone);
+  target.searchParams.set('z',zone);
+  location.replace(target.toString());
+})();
+</script>
+</body>
 </html>
