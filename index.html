@@ -344,9 +344,9 @@
     // Адаптированный common.js находится по исходному пути в репозитории.
     (() => {
       const script = document.createElement('script');
-      script.src = './assets/scripts/common.js';
+      script.src = './assets/scripts/common.js?ver=2';
       script.onerror = () => {
-        console.error('Failed to load ./assets/scripts/common.js');
+        console.error('Failed to load ./assets/scripts/common.js?ver=2');
         const box = document.createElement('main');
         box.style.cssText = 'min-height:100vh;background:#fff;color:#b00020;padding:32px;font:16px/1.5 system-ui,sans-serif';
         box.textContent = 'Landing initialization failed: common.js could not load.';
